@@ -33,25 +33,25 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <div class="container">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>    
+                        <a class="nav-link" href="#"><span id="dash-home-title">Home</span></a>    
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a> 
+                        <a class="nav-link" href="#"><span id="dash-about-title">About</span></a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Technologies</a> 
+                        <a class="nav-link" href="#"><span id="dash-tech-title">Technologies</span></a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">BasicProgramming</a> 
+                        <a class="nav-link active" href="#"><span id="dash-name-title">BasicProgramming</span></a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Projects</a> 
+                        <a class="nav-link" href="#"><span id="dash-projects-title">Projects</span></a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Curriculum</a> 
+                        <a class="nav-link" href="#"><span id="dash-curriculum-title">Curriculum</span></a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a> 
+                        <a class="nav-link" href="#"><span id="dash-contact-title">Contact</span></a> 
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">

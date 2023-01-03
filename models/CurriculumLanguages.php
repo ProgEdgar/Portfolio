@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "curriculum_languages".
  *
  * @property int $IdCurriculumLanguages
- * @property string $Title
  * @property string $ST_MLanguage
  * @property string $MLanguage
  * @property string $ST_OralComp
@@ -42,10 +41,9 @@ class CurriculumLanguages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Title', 'ST_MLanguage', 'MLanguage', 'ST_OralComp', 'OralComp', 'ST_Reading', 'Reading', 'ST_OralInteraction', 'OralInteraction', 'ST_OralProduction', 'OralProduction', 'ST_Writing', 'Writing', 'Curriculum_Id'], 'required'],
+            [['ST_MLanguage', 'MLanguage', 'ST_OralComp', 'OralComp', 'ST_Reading', 'Reading', 'ST_OralInteraction', 'OralInteraction', 'ST_OralProduction', 'OralProduction', 'ST_Writing', 'Writing', 'Curriculum_Id'], 'required'],
             [['Curriculum_Id'], 'integer'],
-            [['Title'], 'string', 'max' => 50],
-            [['ST_MLanguage', 'MLanguage', 'ST_OralComp', 'ST_Reading', 'ST_OralInteraction', 'ST_OralProduction', 'ST_Writing'], 'string', 'max' => 20],
+            [['ST_MLanguage', 'MLanguage', 'ST_OralComp', 'ST_Reading', 'ST_OralInteraction', 'ST_OralProduction', 'ST_Writing'], 'string', 'max' => 50],
             [['OralComp', 'Reading', 'OralInteraction', 'OralProduction', 'Writing'], 'string', 'max' => 2],
             [['Curriculum_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Curriculum::class, 'targetAttribute' => ['Curriculum_Id' => 'IdCurriculum']],
         ];
@@ -58,7 +56,6 @@ class CurriculumLanguages extends \yii\db\ActiveRecord
     {
         return [
             'IdCurriculumLanguages' => 'Id Curriculum Languages',
-            'Title' => 'Title',
             'ST_MLanguage' => 'St M Language',
             'MLanguage' => 'M Language',
             'ST_OralComp' => 'St Oral Comp',

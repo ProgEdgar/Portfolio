@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m221230_000005_create_curriculum_table
+ * Class m221230_000004_create_curriculum_table
  */
-class m221230_000005_create_curriculum_table extends Migration
+class m221230_000004_create_curriculum_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -22,9 +22,9 @@ class m221230_000005_create_curriculum_table extends Migration
             'Title' => $this->string(20)->notNull(),
             'ST_Name' => $this->string(20)->notNull(),
             'Name' => $this->string(100)->notNull(),
-            'ST_PretendedJob' => $this->string(20)->notNull(),
+            'ST_PretendedJob' => $this->string(50)->notNull(),
             'PretendedJob' => $this->string(100)->notNull(),
-            'ST_ProfExperience' => $this->string(20)->notNull(),
+            'ST_ProfExperience' => $this->string(50)->notNull(),
             'ST_Education' => $this->string(20)->notNull(),
             'ST_Languages' => $this->string(20)->notNull(),
             'Language_Id' => $this->integer()->notNull(),

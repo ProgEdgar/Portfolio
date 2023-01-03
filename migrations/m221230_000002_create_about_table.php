@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m221230_000003_create_about_table
+ * Class m221230_000002_create_about_table
  */
-class m221230_000003_create_about_table extends Migration
+class m221230_000002_create_about_table extends Migration
 {
     /**
      * {@inheritdoc}

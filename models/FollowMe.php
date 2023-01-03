@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $IdFollowMe
  * @property string $Title
+ * @property int $Language_Id
  *
  * @property FollowMeImage[] $followMeImages
  */
@@ -28,7 +29,8 @@ class FollowMe extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Title'], 'required'],
+            [['Title', 'Language_Id'], 'required'],
+            [['Language_Id'], 'integer'],
             [['Title'], 'string', 'max' => 20],
         ];
     }
@@ -41,6 +43,7 @@ class FollowMe extends \yii\db\ActiveRecord
         return [
             'IdFollowMe' => 'Id Follow Me',
             'Title' => 'Title',
+            'Language_Id' => 'Language ID',
         ];
     }
 

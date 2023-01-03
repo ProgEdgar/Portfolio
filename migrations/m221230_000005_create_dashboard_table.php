@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m221230_000006_create_dashboard_table
+ * Class m221230_000005_create_dashboard_table
  */
-class m221230_000006_create_dashboard_table extends Migration
+class m221230_000005_create_dashboard_table extends Migration
 {
     /**
      * {@inheritdoc}

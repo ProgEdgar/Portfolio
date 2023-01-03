@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\About;
 use yii\web\Response;
+use app\models\Header;
 use app\models\Contact;
 use app\models\Project;
 use yii\web\Controller;
@@ -73,7 +74,113 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex(/*$Code*/)
+    public function actionIndex()
+    {
+        return $this->thisIndex('en_us');
+    }
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionIndex2($Code)
+    {  
+        return $this->thisIndex($Code);
+    }
+
+    private function thisIndex($Code){
+        $Language = Language::find()->where('Code like "%'.$Code.'%"')->one();
+
+        if(!$Language){
+            $Language = Language::find()->where('Code like "%??_??%"')->one();
+        }
+        $Dashboard = null;
+        $About = null;
+        $Header = null;
+        $Contact = null;
+        $Projects = null;
+        $FollowMe = null;
+        $Technologies = null;
+        $Curriculum = null;
+        $AllProjects = null;
+        $AllTechnologies = null;
+        $AllJobs = null;
+        $AllEducation = null;
+        $CurriculumLanguage = null;
+        $ForeignLanguages = null;
+        $FollowImages = null;
+
+        if($Language){
+            $Dashboard = Dashboard::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Language){
+            $About = About::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Language){
+            $FollowMe = FollowMe::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Language){
+            $Header = Header::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Language){
+            $Contact = Contact::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Language){
+            $Projects = Projects::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Language){
+            $Technologies = Technologies::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Language){
+            $Curriculum = Curriculum::find()->where('Language_Id = '.$Language->IdLanguage)->one();
+        }
+        if($Projects){
+            $AllProjects = $Projects->projects;
+        }
+        if($FollowMe){
+            $FollowImages = $FollowMe->followMeImages;
+        }
+        if($Technologies){
+            $AllTechnologies = $Technologies->technologies;
+        }
+        if($Curriculum){
+            $AllJobs = $Curriculum->curriculumJobs;
+        }
+        if($Curriculum){
+            $AllEducation = $Curriculum->curriculumEducations;
+        }
+        if($Curriculum){
+            $CurriculumLanguage = CurriculumLanguages::find()->where('Curriculum_Id = '.$Curriculum->IdCurriculum)->one();
+        }
+        if($CurriculumLanguage){
+            $ForeignLanguages = $CurriculumLanguage->foreignLanguages;
+        }
+
+        return $this->render('index', [
+            'Dashboard' => $Dashboard,
+            'FollowMe' => $FollowMe,
+            'FollowImages' => $FollowImages,
+            'About' => $About,
+            'Header' => $Header,
+            'Contact' => $Contact,
+            'Projects' => $Projects,
+            'Technologies' => $Technologies,
+            'Curriculum' => $Curriculum,
+            'AllProjects' => $AllProjects,
+            'AllTechnologies' => $AllTechnologies,
+            'AllJobs' => $AllJobs,
+            'AllEducation' => $AllEducation,
+            'CurriculumLanguage' => $CurriculumLanguage,
+            'ForeignLanguages' => $ForeignLanguages,
+        ]);    
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionCreate(/*$Code*/)
     {
         /*$language = Language::Find()->where(['Code' => strtolower($Code)])->one();
         if($language == null){
@@ -92,7 +199,7 @@ class SiteController extends Controller
             $followMeModel = new FollowMe();
             $followMeImageModel = new FollowMeImage();
         }*/
-
+/*
 
 
 
@@ -129,7 +236,7 @@ class SiteController extends Controller
             'followMeModel'=>$followMeModel,
 
             'AllTechnologies'=>$AllTechnologies,
-        ]);
+        ]);*/
     }
 
     /**

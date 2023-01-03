@@ -20,6 +20,7 @@ class m221230_000007_create_follow_me_image_table extends Migration
         $this->createTable('{{follow_me_image}}', [
             'IdFollowMeImage' => $this->primaryKey(),
             'Image' => $this->string(50)->notNull(),
+            'Link' => $this->string(100)->notNull(),
             'FollowMe_Id' => $this->integer()->notNull(),
         ], $tableOptions);
         

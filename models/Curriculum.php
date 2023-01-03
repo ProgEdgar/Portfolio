@@ -41,8 +41,9 @@ class Curriculum extends \yii\db\ActiveRecord
         return [
             [['Title', 'ST_Name', 'Name', 'ST_PretendedJob', 'PretendedJob', 'ST_ProfExperience', 'ST_Education', 'ST_Languages', 'Language_Id'], 'required'],
             [['Language_Id'], 'integer'],
-            [['Title', 'ST_Name', 'ST_PretendedJob', 'ST_ProfExperience', 'ST_Education', 'ST_Languages'], 'string', 'max' => 20],
+            [['Title', 'ST_Name', 'ST_Education', 'ST_Languages'], 'string', 'max' => 20],
             [['Name', 'PretendedJob'], 'string', 'max' => 100],
+            [['ST_PretendedJob', 'ST_ProfExperience'], 'string', 'max' => 50],
             [['Language_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::class, 'targetAttribute' => ['Language_Id' => 'IdLanguage']],
         ];
     }

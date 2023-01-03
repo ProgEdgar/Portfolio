@@ -36,3 +36,13 @@ main{
     bottom: 0;
     padding-bottom: 0px !important;
 }
+
+.bg-1{
+    background-color: #C6C6C6;
+}
+
+
+
+p, span {
+    color:aqua;
+}

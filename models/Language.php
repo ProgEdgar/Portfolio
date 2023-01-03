@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $IdLanguage
  * @property string $Name
+ * @property string $Code
  *
  * @property About[] $abouts
  * @property Contact[] $contacts
@@ -34,8 +35,10 @@ class Language extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Name'], 'required'],
+            [['Name', 'Code'], 'required'],
             [['Name'], 'string', 'max' => 100],
+            [['Code'], 'string', 'max' => 10],
+            [['Code'], 'unique'],
         ];
     }
 
@@ -47,6 +50,7 @@ class Language extends \yii\db\ActiveRecord
         return [
             'IdLanguage' => 'Id Language',
             'Name' => 'Name',
+            'Code' => 'Code',
         ];
     }
 

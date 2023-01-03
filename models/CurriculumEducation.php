@@ -12,9 +12,9 @@ use Yii;
  * @property string $Course
  * @property string $ST_University
  * @property string $University
- * @property string $ST_AquiredTech
+ * @property string $ST_AcquiredTech
  * @property string $ST_Programming
- * @property string $ST_OperationSystem
+ * @property string $ST_OperatingSystem
  * @property string $ST_Frameworks
  * @property string $ST_Tools
  * @property string $ST_FinalGrade
@@ -41,9 +41,9 @@ class CurriculumEducation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ST_Course', 'Course', 'ST_University', 'University', 'ST_AquiredTech', 'ST_Programming', 'ST_OperationSystem', 'ST_Frameworks', 'ST_Tools', 'ST_FinalGrade', 'FinalGrade', 'Curriculum_Id'], 'required'],
+            [['ST_Course', 'Course', 'ST_University', 'University', 'ST_AcquiredTech', 'ST_Programming', 'ST_OperatingSystem', 'ST_Frameworks', 'ST_Tools', 'ST_FinalGrade', 'FinalGrade', 'Curriculum_Id'], 'required'],
             [['FinalGrade', 'Curriculum_Id'], 'integer'],
-            [['ST_Course', 'ST_University', 'ST_AquiredTech', 'ST_Programming', 'ST_OperationSystem', 'ST_Frameworks', 'ST_Tools', 'ST_FinalGrade'], 'string', 'max' => 20],
+            [['ST_Course', 'ST_University', 'ST_AcquiredTech', 'ST_Programming', 'ST_OperatingSystem', 'ST_Frameworks', 'ST_Tools', 'ST_FinalGrade'], 'string', 'max' => 50],
             [['Course'], 'string', 'max' => 100],
             [['University'], 'string', 'max' => 200],
             [['Curriculum_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Curriculum::class, 'targetAttribute' => ['Curriculum_Id' => 'IdCurriculum']],
@@ -61,9 +61,9 @@ class CurriculumEducation extends \yii\db\ActiveRecord
             'Course' => 'Course',
             'ST_University' => 'St University',
             'University' => 'University',
-            'ST_AquiredTech' => 'St Aquired Tech',
+            'ST_AcquiredTech' => 'St Acquired Tech',
             'ST_Programming' => 'St Programming',
-            'ST_OperationSystem' => 'St Operation System',
+            'ST_OperatingSystem' => 'St Operating System',
             'ST_Frameworks' => 'St Frameworks',
             'ST_Tools' => 'St Tools',
             'ST_FinalGrade' => 'St Final Grade',

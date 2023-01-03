@@ -21,12 +21,13 @@ class m221230_000014_create_project_table extends Migration
             'IdProject' => $this->primaryKey(),
             'Title' => $this->string(50)->notNull(),
             'ST_Presentation' => $this->string(20)->notNull(),
-            'Pesentation' => $this->string(50)->notNull(),
+            'Presentation' => $this->string(50),
             'ST_UsedTech' => $this->string(20)->notNull(),
-            'ST_CodeSource' => $this->string(20)->notNull(),
-            'CodeSource' => $this->string(100)->notNull(),
+            'ST_SourceCode' => $this->string(20)->notNull(),
+            'SourceCode' => $this->string(100),
             'ST_Description' => $this->string(20)->notNull(),
             'Description' => $this->text()->notNull(),
+            'Image' => $this->string(50)->notNull(),
             'Projects_Id' => $this->integer()->notNull(),
         ], $tableOptions);
         

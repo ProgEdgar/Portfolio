@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $IdFollowMeImage
  * @property string $Image
+ * @property string $Link
  * @property int $FollowMe_Id
  *
  * @property FollowMe $followMe
@@ -29,9 +30,10 @@ class FollowMeImage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Image', 'FollowMe_Id'], 'required'],
+            [['Image', 'Link', 'FollowMe_Id'], 'required'],
             [['FollowMe_Id'], 'integer'],
             [['Image'], 'string', 'max' => 50],
+            [['Link'], 'string', 'max' => 100],
             [['FollowMe_Id'], 'exist', 'skipOnError' => true, 'targetClass' => FollowMe::class, 'targetAttribute' => ['FollowMe_Id' => 'IdFollowMe']],
         ];
     }
@@ -44,6 +46,7 @@ class FollowMeImage extends \yii\db\ActiveRecord
         return [
             'IdFollowMeImage' => 'Id Follow Me Image',
             'Image' => 'Image',
+            'Link' => 'Link',
             'FollowMe_Id' => 'Follow Me ID',
         ];
     }
