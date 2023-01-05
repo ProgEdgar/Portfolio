@@ -23,40 +23,45 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
     <head>
-        <title><?= Html::encode($this->title) ?></title>
+        <title><?=$this->params['Name']?></title>
         <link rel="stylesheet" type="text/css" href="<?=Yii::$app->request->baseUrl.'/css/dark-mode.css'?>" />
         <?php $this->head() ?>
     </head>
     <body class="d-flex flex-column h-100">
         <?php $this->beginBody() ?>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
-            <div class="container">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span id="dash-home-title">Home</span></a>    
+            <div class="container cont-nav">
+                <ul class="navbar-nav row">
+                    <li class="nav-item col-auto">
+                        <span class="nav-link buttons">
+                            <img width="40px" height="40px" src="<?=Yii::$app->request->baseUrl.'/img/light-mode.png'?>" alt="Light Mode"/>
+                        </span> 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span id="dash-about-title">About</span></a> 
+                    <li class="nav-item col">
+                        <a class="nav-link nav-option text-25" href="#<?=str_replace(' ','_',$this->params['Name'])?>"><?=$this->params['Home']?></a>    
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span id="dash-tech-title">Technologies</span></a> 
+                    <li class="nav-item col">
+                        <a class="nav-link nav-option text-25" href="#about"><?=$this->params['About']?></a> 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><span id="dash-name-title">BasicProgramming</span></a> 
+                    <li class="nav-item col">
+                        <a class="nav-link nav-option text-25" href="#technologies"><?=$this->params['Technologies']?></a> 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span id="dash-projects-title">Projects</span></a> 
+                    <li class="nav-item col-3">
+                        <a class="nav-link active nav-option text-30-bold" href="#<?=str_replace(' ','_',$this->params['Name'])?>"><?=$this->params['Name']?></a> 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span id="dash-curriculum-title">Curriculum</span></a> 
+                    <li class="nav-item col">
+                        <a class="nav-link nav-option text-25" href="#projects"><?=$this->params['Projects']?></a> 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span id="dash-contact-title">Contact</span></a> 
+                    <li class="nav-item col">
+                        <a class="nav-link nav-option text-25" href="#curriculum"><?=$this->params['Curriculum']?></a> 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item col">
+                        <a class="nav-link nav-option text-25" href="#contact"><?=$this->params['Contact']?></a> 
+                    </li>
+                    <li class="nav-item col-auto">
+                        <span class="nav-link buttons">
                             <img width="40px" height="40px" src="<?=Yii::$app->request->baseUrl.'/img/settings-icon.png'?>" alt="Settings"/>
-                        </a> 
+                        </span> 
                     </li>
                 </ul>
             </div>
@@ -71,7 +76,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             </div>
         </main>
 
-        <footer id="footer" class="mt-auto py-3 bg-light">
+        <footer id="footer" class="mt-auto py-3 bg-3">
             <div class="container">
                 <p>Project Developed by Basic Programming</p>
             </div>

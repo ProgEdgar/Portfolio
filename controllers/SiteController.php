@@ -155,6 +155,15 @@ class SiteController extends Controller
         if($CurriculumLanguage){
             $ForeignLanguages = $CurriculumLanguage->foreignLanguages;
         }
+        
+        $this->view->params['Home'] = $Header->Home;
+        $this->view->params['About'] = $Header->About;
+        $this->view->params['Technologies'] = $Header->Technologies;
+        $this->view->params['Name'] = $Header->Name;
+        $this->view->params['Projects'] = $Header->Projects;
+        $this->view->params['Curriculum'] = $Header->Curriculum;
+        $this->view->params['Contact'] = $Header->Contact;
+        
 
         return $this->render('index', [
             'Dashboard' => $Dashboard,
