@@ -22,7 +22,7 @@ $this->title = 'Basic Programming';
     </div>
 
     <div class="bg-1 section" id="about">
-        <div class="row">
+        <div class="row justify-center">
             <div class="div-title col-12"><span class="text-30-bold"><?=$About->Title?></span></div>
             <div class="col-auto">
                 <img id="about-image" src="<?=Yii::$app->request->baseUrl.'/img/my-image2'?>"/>
@@ -51,7 +51,7 @@ $this->title = 'Basic Programming';
         <div class="row">
             <div class="div-title col-12"><span class="text-30-bold"><?=$Projects->Title?></span></div>
         </div>
-        <div class="projects">
+        <div class="projects row justify-center">
             <?php if($AllProjects){ foreach($AllProjects as $Project){ ?>
                 <div class="slide">
                     <div class="project-square w-75 m-auto">
@@ -73,7 +73,7 @@ $this->title = 'Basic Programming';
     </div>
 
     <div class="bg-2 section" id="curriculum">
-        <div class="curriculum-info row">
+        <div class="curriculum-info row justify-center">
             <div class="div-title col-12"><span class="text-30-bold"><?=$Curriculum->Title?></span></div>
             <div class="row col-12">
                 <div class="col row div-blue-ball">
@@ -240,27 +240,29 @@ $this->title = 'Basic Programming';
         </div>
     </div>
 
-    <div class="bg-3" id="contact">
-        <div class="contact-info">
-            <p><span><?=$Contact->Title?></span></p>
-        </div>
-        <div class="row">
-            <div class="col-7">
-                <p><span><?=$Contact->Name?></span></p>
-                <p><span><?=$Contact->ST_Email?>: </span><span><?=$Contact->Email?></span></p>
-                <p><span><?=$Contact->ST_PhoneNumber?>: </span><span><?=$Contact->PhoneNumber?></span></p>
-            </div>
-            <div class="col-5">
-                <p><span><?=$FollowMe->Title?></span></p>
-                <div class="row">
-                    <?php if($FollowImages){ foreach($FollowImages as $Image){ ?>
-                        <div class="col-auto">
-                            <div>
-                                <img src="<?=Yii::$app->request->baseUrl.$Image->Image?>"/>
-                                <a href="<?=$Image->Link?>"></a>
+    <div class="bg-3 section" id="contact">
+        <div class="contact-info row justify-center">
+            <div class="div-title col"><p><span class="text-25-bold"><?=$Contact->Title?></span></p></div>
+            <div class="w-100"></div>
+            <div class="col row justify-center">
+                <div class="col-6">
+                    <p><span class="text-30-bold"><?=$Contact->Name?></span></p>
+                    <p><span class="text-20-bold"><?=$Contact->ST_Email?>: </span><span class="text-20"><?=$Contact->Email?></span></p>
+                    <p><span class="text-20-bold"><?=$Contact->ST_PhoneNumber?>: </span><span class="text-20"><?=$Contact->PhoneNumber?></span></p>
+                </div>
+                <div class="col-3" id="follow-me">
+                    <div class="div-title"><p><span class="text-25-bold"><?=$FollowMe->Title?></span></p></div>
+                    <div class="row justify-center">
+                        <?php if($FollowImages){ $num=1; foreach($FollowImages as $Image){ ?>
+                            <div class="col-auto">
+                                <a href="<?=$Image->Link?>">
+                                    <img class="img-follow-me" src="<?=Yii::$app->request->baseUrl.$Image->Image?>"/>
+                                </a>
                             </div>
-                        </div>
-                    <?php }} ?>
+                            <?php if($num==3){ $num=0; ?>
+                            <div class="w-100"></div>
+                        <?php } $num++; }} ?>
+                    </div>
                 </div>
             </div>
         </div>

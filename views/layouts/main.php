@@ -76,9 +76,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             </div>
         </main>
 
-        <footer id="footer" class="mt-auto py-3 bg-3">
+        <footer id="footer" class="py-2">
             <div class="container">
-                <p>Project Developed by Basic Programming</p>
+                <div id="developed"><p class="text-right"><span class="text-15-bold">Project Developed by: Basic Programming</span></p></div>
             </div>
         </footer>
 
