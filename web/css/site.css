@@ -8,6 +8,7 @@ main{
 
 p, span {
     color:aqua;
+    margin: 0px;
 }
 
 /******** class ********/
@@ -156,6 +157,7 @@ p, span {
     padding: 20px;
     border-radius: 50%;
     background-color: #00d1ff;
+    margin-bottom: auto;
 }
 
 .div-blue-ball{
@@ -163,18 +165,35 @@ p, span {
     margin: 10px 10px;
     padding: 15px;
     border-radius: 35px;
+    vertical-align: top;
     align-items: center;
 }
 
-.text-center{
+.inside-div-blue-ball{
+    background-color: #C6C6C6;
+    padding: 15px;
+    margin: 5px 0px 5px 0px;
+    border-radius: 35px;
     text-align: center;
 }
+
+.inside-div-blue-ball > .row > .col {
+    background-color: #D9D9D9;
+    padding: 15px;
+    margin: 5px 15px 5px 15px;
+    border-radius: 35px;
+}
+
 .justify-center {
     justify-content: center !important;
 }
 
 .text-center {
     text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
 }
 
 .project-square{

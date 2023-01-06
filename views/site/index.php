@@ -35,12 +35,14 @@ $this->title = 'Basic Programming';
         <div class="row justify-center">
             <div class="div-title col-12"><span class="text-30-bold"><?=$Technologies->Title?></span></div>
             <div class="row col-12 justify-center">
-                <?php if($AllTechnologies){ foreach($AllTechnologies as $Technology){ ?>
-                <div class="col-auto row div-blue-ball text-center">
+                <?php if($AllTechnologies){ $num=1; foreach($AllTechnologies as $Technology){ ?>
+                <div class="col row div-blue-ball text-center">
                     <div class="blue-ball col-auto"></div>
                     <div class="col"><span class="text-25-bold"><?=$Technology->Title?></span></div>
                 </div>
-                <?php }} ?>
+                <?php if($num==4){ $num=0; ?>
+                    <div class="w-100"></div>
+                <?php } $num++; }} ?>
             </div>
         </div>
     </div>
@@ -84,141 +86,156 @@ $this->title = 'Basic Programming';
                 </div>
             </div>
             <div class="col-12"><span class="text-25-bold"><?=$Curriculum->ST_ProfExperience?></span></div>
-            <div class="row col-12">
-                <?php if($AllJobs){ foreach($AllJobs as $Job){ ?>
-                    <div class="col-auto">
-                        <div class="blue-ball"></div>
-                        <p><span><?=$Job->ST_Job?>: </span><span><?=$Job->Job?></span></p>
-                        <p><span><?=$Job->ST_Since?>: </span><span><?=$Job->Since?></span></p>
-                        <p><span><?=$Job->ST_Local?>: </span><span><?=$Job->Local?></span></p>
-                        <p><span><?=$Job->ST_Company?>: </span><span><?=$Job->Company?></span></p>
-                        <p><span><?=$Job->ST_Type?>: </span></p>
-                        <p><span><?=$Job->Work?></span></p>
+            <?php if($AllJobs){ $num=1; foreach($AllJobs as $Job){ ?>
+                <div class="col row">
+                    <div class="col row div-blue-ball">
+                        <div class="blue-ball col-auto"></div>
+                        <div class="col">
+                            <p><span class="text-20-bold"><?=$Job->ST_Job?>: </span><span class="text-20"><?=$Job->Job?></span></p>
+                            <p><span class="text-20-bold"><?=$Job->ST_Since?>: </span><span class="text-20"><?=$Job->Since?></span></p>
+                            <p><span class="text-20-bold"><?=$Job->ST_Local?>: </span><span class="text-20"><?=$Job->Local?></span></p>
+                            <p><span class="text-20-bold"><?=$Job->ST_Company?>: </span><span class="text-20"><?=$Job->Company?></span></p>
+                            <p><span class="text-20"><?=$Job->ST_Type?>: </span></p>
+                            <p><span class="text-20"><?=$Job->Work?></span></p>
+                        </div>
                     </div>
-                <?php }} ?>
-            </div>
+                </div>
+            <?php if($num==2){ $num=0; ?>
+                <div class="w-100"></div>
+            <?php } $num++; }} ?>
             <div class="col-12"><span class="text-25-bold"><?=$Curriculum->ST_Education?></span></div>
-            <div class="row col-12">
-                <?php if($AllEducation){ foreach($AllEducation as $Education){ ?>
-                    <div class="blue-ball col-1"></div>
-                    <div class="col-11">
-                        <p><span><?=$Education->ST_Course?>: </span><span><?=$Education->Course?></span></p>
-                        <p><span><?=$Education->ST_University?>: </span><span><?=$Education->University?></span></p>
-                        <div>
-                            <p><span><?=$Education->ST_AcquiredTech?></span></p>
-                            <div class="row">
-                                <div class="col-3">
-                                    <p><span><?=$Education->ST_Programming?> </span></p>
-                                </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <?php if($Education->educationTechnologies){ foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '1'){?>
-                                            <div class="col-4">
-                                                <p><span><?=$Tech->technology->Title?> </span></p>
+            <?php if($AllEducation){ foreach($AllEducation as $Education){ ?>
+                <div class="col row">
+                    <div class="col row div-blue-ball">
+                        <div class="blue-ball col-auto"></div>
+                        <div class="col">
+                            <p><span class="text-20-bold"><?=$Education->ST_Course?>: </span><span class="text-20"><?=$Education->Course?></span></p>
+                            <p><span class="text-20-bold"><?=$Education->ST_University?>: </span><span class="text-20"><?=$Education->University?></span></p>
+                            <div class="inside-div-blue-ball">
+                                <p><span class="text-20-bold"><?=$Education->ST_AcquiredTech?></span></p>
+                                <div class="row">
+                                    <div class="col row">
+                                        <div class="col-3">
+                                            <p class="text-left"><span class="text-20-bold"><?=$Education->ST_Programming?> </span></p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <?php if($Education->educationTechnologies){ $num=1; foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '1'){?>
+                                                    <div class="col">
+                                                        <p><span class="text-20"><?=$Tech->technology->Title?> </span></p>
+                                                    </div>
+                                                    <?php if($num==3){ $num=0; ?>
+                                                    <div class="w-100"></div>
+                                                <?php } $num++; }}} ?>
                                             </div>
-                                        <?php }}} ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-3">
-                                    <p><span><?=$Education->ST_OperatingSystem?> </span></p>
-                                </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <?php if($Education->educationTechnologies){ foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '2'){?>
-                                            <div class="col-4">
-                                                <p><span><?=$Tech->technology->Title?> </span></p>
+                                    <div class="w-100"></div>
+                                    <div class="col row">
+                                        <div class="col-3">
+                                            <p class="text-left"><span class="text-20-bold"><?=$Education->ST_OperatingSystem?> </span></p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <?php if($Education->educationTechnologies){ $num=1; foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '2'){?>
+                                                    <div class="col">
+                                                        <p><span class="text-20"><?=$Tech->technology->Title?> </span></p>
+                                                    </div>
+                                                    <?php if($num==3){ $num=0; ?>
+                                                    <div class="w-100"></div>
+                                                <?php } $num++; }}} ?>
                                             </div>
-                                        <?php }}} ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-3">
-                                    <p><span><?=$Education->ST_Frameworks?> </span></p>
-                                </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <?php if($Education->educationTechnologies){ foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '3'){?>
-                                            <div class="col-4">
-                                                <p><span><?=$Tech->technology->Title?> </span></p>
+                                    <div class="w-100"></div>
+                                    <div class="col row">
+                                        <div class="col-3">
+                                            <p class="text-left"><span class="text-20-bold"><?=$Education->ST_Frameworks?> </span></p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <?php if($Education->educationTechnologies){ $num=1; foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '3'){?>
+                                                    <div class="col">
+                                                        <p><span class="text-20"><?=$Tech->technology->Title?> </span></p>
+                                                    </div>
+                                                    <?php if($num==3){ $num=0; ?>
+                                                    <div class="w-100"></div>
+                                                <?php } $num++; }}} ?>
                                             </div>
-                                        <?php }}} ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-3">
-                                    <p><span><?=$Education->ST_Tools?> </span></p>
-                                </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <?php if($Education->educationTechnologies){ foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '4'){?>
-                                            <div class="col-4">
-                                                <p><span><?=$Tech->technology->Title?> </span></p>
+                                    <div class="w-100"></div>
+                                    <div class="col row">
+                                        <div class="col-3">
+                                            <p class="text-left"><span class="text-20-bold"><?=$Education->ST_Tools?> </span></p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <?php if($Education->educationTechnologies){ $num=1; foreach($Education->educationTechnologies as $Tech){ if($Tech->Type == '4'){?>
+                                                    <div class="col">
+                                                        <p><span class="text-20"><?=$Tech->technology->Title?> </span></p>
+                                                    </div>
+                                                    <?php if($num==3){ $num=0; ?>
+                                                    <div class="w-100"></div>
+                                                <?php } $num++; }}} ?>
                                             </div>
-                                        <?php }}} ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <p><span class="text-20-bold"><?=$Education->ST_FinalGrade?>: </span><span class="text-20"><?=$Education->FinalGrade?></span></p>
                         </div>
-                        <p><span><?=$Education->ST_FinalGrade?>: </span><span><?=$Education->FinalGrade?></span></p>
                     </div>
-                <?php }} ?>
-            </div>
+                </div>
+                <div class="w-100"></div>
+            <?php }} ?>
             <div class="col-12"><span class="text-25-bold"><?=$Curriculum->ST_Languages?></span></div>
-            <div class="row col-12">
-                <div class="blue-ball col-1"></div>
-                <div class="col-11">
-                    <p><span><?=$CurriculumLanguage->ST_MLanguage?>: </span><span><?=$CurriculumLanguage->MLanguage?></span></p>
-                    <div class="row">
-                        <div class="col-auto">
-                            <p><span><?=$CurriculumLanguage->ST_OralComp?>: </span></p>
-                            <p><span><?=$CurriculumLanguage->OralComp?></span></p>
-                        </div>
-                        <div class="col-auto">
-                            <p><span><?=$CurriculumLanguage->ST_Reading?>: </span></p>
-                            <p><span><?=$CurriculumLanguage->Reading?></span></p>
-                        </div>
-                        <div class="col-auto">
-                            <p><span><?=$CurriculumLanguage->ST_OralInteraction?>: </span></p>
-                            <p><span><?=$CurriculumLanguage->OralInteraction?></span></p>
-                        </div>
-                        <div class="col-auto">
-                            <p><span><?=$CurriculumLanguage->ST_OralProduction?>: </span></p>
-                            <p><span><?=$CurriculumLanguage->OralProduction?></span></p>
-                        </div>
-                        <div class="col-auto">
-                            <p><span><?=$CurriculumLanguage->ST_Writing?>: </span></p>
-                            <p><span><?=$CurriculumLanguage->Writing?></span></p>
+            <div class="col row">
+                <div class="col row div-blue-ball">
+                    <div class="blue-ball col-auto"></div>
+                    <div class="col-11">
+                        <p><span class="text-20-bold"><?=$CurriculumLanguage->ST_MLanguage?>: </span><span class="text-20"><?=$CurriculumLanguage->MLanguage?></span></p>
+                        <div class="row inside-div-blue-ball">
+                            <div class="col"><p><span class="text-20-bold"><?=$CurriculumLanguage->ST_OralComp?>: </span></p></div>
+                            <div class="col"><p><span class="text-20-bold"><?=$CurriculumLanguage->ST_Reading?>: </span></p></div>
+                            <div class="col"><p><span class="text-20-bold"><?=$CurriculumLanguage->ST_OralInteraction?>: </span></p></div>
+                            <div class="col"><p><span class="text-20-bold"><?=$CurriculumLanguage->ST_OralProduction?>: </span></p></div>
+                            <div class="col"><p><span class="text-20-bold"><?=$CurriculumLanguage->ST_Writing?>: </span></p></div>
+                            <div class="w-100"></div>
+                            <div class="col"><p><span class="text-20"><?=$CurriculumLanguage->OralComp?></span></p></div>
+                            <div class="col"><p><span class="text-20"><?=$CurriculumLanguage->Reading?></span></p></div>
+                            <div class="col"><p><span class="text-20"><?=$CurriculumLanguage->OralInteraction?></span></p></div>
+                            <div class="col"><p><span class="text-20"><?=$CurriculumLanguage->OralProduction?></span></p></div>
+                            <div class="col"><p><span class="text-20"><?=$CurriculumLanguage->Writing?></span></p></div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="w-100"></div>
             <?php if($ForeignLanguages){ foreach($ForeignLanguages as $Foreign){ ?>
-                <div class="row col-12">
-                    <div class="blue-ball col-1"></div>
-                    <div class="col-11">
-                        <p><span><?=$Foreign->ST_FLanguage?>: </span><span><?=$Foreign->FLanguage?></span></p>
-                        <div class="row">
-                            <div class="col-auto">
-                                <p><span><?=$Foreign->ST_OralComp?>: </span></p>
-                                <p><span><?=$Foreign->OralComp?></span></p>
-                            </div>
-                            <div class="col-auto">
-                                <p><span><?=$Foreign->ST_Reading?>: </span></p>
-                                <p><span><?=$Foreign->Reading?></span></p>
-                            </div>
-                            <div class="col-auto">
-                                <p><span><?=$Foreign->ST_OralInteraction?>: </span></p>
-                                <p><span><?=$Foreign->OralInteraction?></span></p>
-                            </div>
-                            <div class="col-auto">
-                                <p><span><?=$Foreign->ST_OralProduction?>: </span></p>
-                                <p><span><?=$Foreign->OralProduction?></span></p>
-                            </div>
-                            <div class="col-auto">
-                                <p><span><?=$Foreign->ST_Writing?>: </span></p>
-                                <p><span><?=$Foreign->Writing?></span></p>
+                <div class="col row">
+                    <div class="col row div-blue-ball">
+                        <div class="blue-ball col-auto"></div>
+                            <div class="col-11">
+                                <p><span class="text-20-bold"><?=$Foreign->ST_FLanguage?>: </span><span class="text-20"><?=$Foreign->FLanguage?></span></p>
+                                <div class="row inside-div-blue-ball">
+                                    <div class="col blue-ball-text"><p><span class="text-20-bold"><?=$Foreign->ST_OralComp?>: </span></p></div>
+                                    <div class="col blue-ball-text"><p><span class="text-20-bold"><?=$Foreign->ST_Reading?>: </span></p></div>
+                                    <div class="col blue-ball-text"><p><span class="text-20-bold"><?=$Foreign->ST_OralInteraction?>: </span></p></div>
+                                    <div class="col blue-ball-text"><p><span class="text-20-bold"><?=$Foreign->ST_OralProduction?>: </span></p></div>
+                                    <div class="col blue-ball-text"><p><span class="text-20-bold"><?=$Foreign->ST_Writing?>: </span></p></div>
+                                    <div class="w-100"></div>
+                                    <div class="col"><p><span class="text-20"><?=$Foreign->OralComp?></span></p></div>
+                                    <div class="col"><p><span class="text-20"><?=$Foreign->Reading?></span></p></div>
+                                    <div class="col"><p><span class="text-20"><?=$Foreign->OralInteraction?></span></p></div>
+                                    <div class="col"><p><span class="text-20"><?=$Foreign->OralProduction?></span></p></div>
+                                    <div class="col"><p><span class="text-20"><?=$Foreign->Writing?></span></p></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="w-100"></div>
             <?php }} ?>
         </div>
     </div>
