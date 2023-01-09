@@ -53,6 +53,9 @@ $config = [
                 '/' => 'site/index',
                 'home' => 'site/index',
                 'login' => 'site/login',
+
+                'home/<Code>' => 'site/index2',
+                'index/<Code>' => 'site/index2',
             ],
         ],
     ],

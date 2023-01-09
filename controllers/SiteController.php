@@ -90,10 +90,18 @@ class SiteController extends Controller
 
     private function thisIndex($Code){
         $Language = Language::find()->where('Code like "%'.$Code.'%"')->one();
+        
+        $AllLanguages = null;
 
         if(!$Language){
-            $Language = Language::find()->where('Code like "%??_??%"')->one();
+            $Language = Language::find()->where('Code like "%en_us%"')->one();
         }
+        if(!$Language){
+            $Language = Language::find()->where('Code like "%??_??%"')->one();
+        }else{
+            $AllLanguages = Language::find()->where('Code not like "%??_??%"')->orderBy("Name")->all();
+        }
+        
         $Dashboard = null;
         $About = null;
         $Header = null;
@@ -155,7 +163,17 @@ class SiteController extends Controller
         if($CurriculumLanguage){
             $ForeignLanguages = $CurriculumLanguage->foreignLanguages;
         }
-        
+        if($AllLanguages){
+            $num = 0;
+            foreach($AllLanguages as $Lang){
+                $this->view->params['Language'][$num]['Code'] = $Lang->Code;
+                $this->view->params['Language'][$num]['Name'] = $Lang->Name;
+                $num++;
+            }
+        }else{
+            $this->view->params['Language'] = null;
+        }
+        $this->view->params['SelectedLang'] = $Language->Code;
         $this->view->params['Home'] = $Header->Home;
         $this->view->params['About'] = $Header->About;
         $this->view->params['Technologies'] = $Header->Technologies;

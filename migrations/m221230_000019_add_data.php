@@ -281,6 +281,420 @@ class m221230_000019_add_data extends Migration
             'Technology_Id' => 1,
         ]);
 
+        /************************************************************************************** EXTRA DATA **************************************************************/
+        // insert into language
+
+        $this->insert('{{language}}', [
+            'Name' => 'English',
+            'Code' => 'en_us',
+        ]);
+
+        
+        // insert into about
+
+        $this->insert('{{about}}', [
+            'Title' => 'About',
+            'Description' => 'I love Programming So im doing this!',
+            'Image' => '/img/my-image2.jpg',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into contact
+
+        $this->insert('{{contact}}', [
+            'Title' => 'Contact',
+            'Name' => 'My name',
+            'ST_Email' => 'Email',
+            'Email' => 'my.email@email.com',
+            'ST_PhoneNumber' => 'Phone Number',
+            'PhoneNumber' => 'xxxxxxxxx',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into curriculum
+
+        $this->insert('{{curriculum}}', [
+            'Title' => 'Curriculum',
+            'ST_Name' => 'Name',
+            'Name' => 'My name',
+            'ST_PretendedJob' => 'Pretended Job',
+            'PretendedJob' => 'Wanted Job',
+            'ST_ProfExperience' => 'Professional Experience',
+            'ST_Education' => 'Education',
+            'ST_Languages' => 'Languages',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into dashboard
+
+        $this->insert('{{dashboard}}', [
+            'Title' => 'I am My name',
+            'Job' => 'My job',
+            'Contact' => 'Contact Me',
+            'Image' => '/img/my-image1.jpg',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into follow
+
+        $this->insert('{{follow_me}}', [
+            'Title' => 'Follow Me',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into follow_me_image
+
+        $this->insert('{{follow_me_image}}', [
+            'Image' => '/img/facebook.png',
+            'link' => '#',
+            'FollowMe_Id' => 2,
+        ]);
+
+        $this->insert('{{follow_me_image}}', [
+            'Image' => '/img/linkedin.png',
+            'link' => '#',
+            'FollowMe_Id' => 2,
+        ]);
+
+        $this->insert('{{follow_me_image}}', [
+            'Image' => '/img/youtube.png',
+            'link' => '#',
+            'FollowMe_Id' => 2,
+        ]);
+
+        
+        // insert into header
+
+        $this->insert('{{header}}', [
+            'Name' => 'My name',
+            'Home' => 'Home',
+            'About' => 'About',
+            'Technologies' => 'Technologies',
+            'Projects' => 'Projects',
+            'Curriculum' => 'Curriculum',
+            'Contact' => 'Contact',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into projects
+
+        $this->insert('{{projects}}', [
+            'Title' => 'Projects',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into technologies
+
+        $this->insert('{{technologies}}', [
+            'Title' => 'Technologies',
+            'Language_Id' => 2,
+        ]);
+
+        
+        // insert into curriculum_education
+
+        $this->insert('{{curriculum_education}}', [
+            'ST_Course' => 'Course',
+            'Course' => 'My Course',
+            'ST_University' => 'University',
+            'University' => 'My University',
+            'ST_AcquiredTech' => 'Acquired Technologies',
+            'ST_Programming' => 'Programming',
+            'ST_OperatingSystem' => 'Operating System',
+            'ST_Frameworks' => 'Frameworks',
+            'ST_Tools' => 'Tools',
+            'ST_FinalGrade' => 'Final Grade',
+            'FinalGrade' => 0,
+            'Curriculum_Id' => 2,
+        ]);
+
+        
+        // insert into curriculum_languages
+
+        $this->insert('{{curriculum_languages}}', [
+            'ST_MLanguage' => 'Mother Language',
+            'MLanguage' => 'Mother Language',
+            'ST_OralComp' => 'Oral Comprehension',
+            'OralComp' => 'A0',
+            'ST_Reading' => 'Reading',
+            'Reading' => 'A0',
+            'ST_OralInteraction' => 'Oral Interaction',
+            'OralInteraction' => 'A0',
+            'ST_OralProduction' => 'Oral Production',
+            'OralProduction' => 'A0',
+            'ST_Writing' => 'Writing',
+            'Writing' => 'A0',
+            'Curriculum_Id' => 2,
+        ]);
+
+        
+        // insert into curriculum_job
+
+        $this->insert('{{curriculum_job}}', [
+            'ST_Job' => 'Job',
+            'Job' => 'My job',
+            'ST_Since' => 'Since',
+            'Since' => date('Y-m-d', strtotime('01/01/2020')),
+            'ST_Local' => 'Local',
+            'Local' => 'Where i live',
+            'ST_Company' => 'Company',
+            'Company' => 'My company',
+            'ST_Type' => 'Type of work done',
+            'Work' => 'Work
+            Plus Work
+            Ando More Wore',
+            'Curriculum_Id' => 2,
+        ]);
+
+        
+        // insert into project
+
+        $this->insert('{{project}}', [
+            'Title' => 'My First Project',
+            'ST_Presentation' => 'Presentation',
+            'Presentation' => '',
+            'ST_UsedTech' => 'Used Technologies',
+            'ST_SourceCode' => 'SourceCode',
+            'SourceCode' => '',
+            'ST_Description' => 'Description',
+            'Description' => 'This is the description of my thrird project',
+            'Image' => '/img/project.png',
+            'Projects_Id' => 2,
+        ]);
+
+        $this->insert('{{project}}', [
+            'Title' => 'My Second Project',
+            'ST_Presentation' => 'Presentation',
+            'Presentation' => '',
+            'ST_UsedTech' => 'Used Technologies',
+            'ST_SourceCode' => 'SourceCode',
+            'SourceCode' => '',
+            'ST_Description' => 'Description',
+            'Description' => 'This is the description of my second project',
+            'Image' => '/img/project.png',
+            'Projects_Id' => 2,
+        ]);
+
+        $this->insert('{{project}}', [
+            'Title' => 'My Third Project',
+            'ST_Presentation' => 'Presentation',
+            'Presentation' => '',
+            'ST_UsedTech' => 'Used Technologies',
+            'ST_SourceCode' => 'SourceCode',
+            'SourceCode' => '',
+            'ST_Description' => 'Description',
+            'Description' => 'This is the description of my thrird project',
+            'Image' => '/img/project.png',
+            'Projects_Id' => 2,
+        ]);
+
+        
+        // insert into technology
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech1',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech2',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech3',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech4',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech5',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech6',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech7',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech8',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech9',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech10',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech11',
+            'Technologies_Id' => 2,
+        ]);
+
+        $this->insert('{{technology}}', [
+            'Title' => 'Tech12',
+            'Technologies_Id' => 2,
+        ]);
+
+        
+        // insert into education_technologies
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 5,
+            'Type' => '4',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 6,
+            'Type' => '2',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 7,
+            'Type' => '1',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 8,
+            'Type' => '4',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 9,
+            'Type' => '2',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 10,
+            'Type' => '3',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 11,
+            'Type' => '3',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 12,
+            'Type' => '2',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 13,
+            'Type' => '1',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 14,
+            'Type' => '3',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 15,
+            'Type' => '3',
+        ]);
+
+        $this->insert('{{education_technologies}}', [
+            'CurriculumEducation_Id' => 2,
+            'Technology_Id' => 16,
+            'Type' => '1',
+        ]);
+
+        
+        // insert into foreign_languages
+
+        $this->insert('{{foreign_languages}}', [
+            'ST_FLanguage' => 'Foreign Language',
+            'FLanguage' => 'Foreign Language',
+            'ST_OralComp' => 'Oral Comprehension',
+            'OralComp' => 'A0',
+            'ST_Reading' => 'Reading',
+            'Reading' => 'A0',
+            'ST_OralInteraction' => 'Oral Interaction',
+            'OralInteraction' => 'A0',
+            'ST_OralProduction' => 'Oral Production',
+            'OralProduction' => 'A0',
+            'ST_Writing' => 'Writing',
+            'Writing' => 'A0',
+            'CurriculumLanguages_Id' => 2,
+        ]);
+
+        
+        // insert into project_technologies
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 2,
+            'Technology_Id' => 5,
+        ]);
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 2,
+            'Technology_Id' => 6,
+        ]);
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 2,
+            'Technology_Id' => 7,
+        ]);
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 3,
+            'Technology_Id' => 6,
+        ]);
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 3,
+            'Technology_Id' => 9,
+        ]);
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 3,
+            'Technology_Id' => 12,
+        ]);
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 4,
+            'Technology_Id' => 5,
+        ]);
+
+        $this->insert('{{project_technologies}}', [
+            'Project_Id' => 4,
+            'Technology_Id' => 6,
+        ]);
+
     }
 
     /**

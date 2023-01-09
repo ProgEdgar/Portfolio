@@ -15,7 +15,7 @@ $this->title = 'Basic Programming';
                 <div class="div-name"><span class="text-30-white-bold"><?=$Dashboard->Title?></span></div>
                 <div class="div-job"><span class="text-25-white-bold"><?=$Dashboard->Job?></span></div>
                 <div class="div-contact-button">
-                    <a class="buttons contact-button"><?=$Dashboard->Contact?></a>
+                    <a class="buttons contact-button" href="#contact"><?=$Dashboard->Contact?></a>
                 </div>
             </div>
         </div>
@@ -52,13 +52,28 @@ $this->title = 'Basic Programming';
             <div class="div-title col-12"><span class="text-30-bold"><?=$Projects->Title?></span></div>
         </div>
         <div class="projects row justify-center">
+            <div class="text-center" id="all-button-slide">
+                <?php if($AllProjects){ $num=1; foreach($AllProjects as $Project){ ?>
+                    <span class="button-slide m-1" id="button-slide-<?=$num?>" onclick="currentDiv(<?=$num?>);"></span>
+                <?php $num++; }} ?>
+            </div>
             <?php if($AllProjects){ foreach($AllProjects as $Project){ ?>
-                <div class="slide">
+                <div class="slides">
                     <div class="project-square w-75 m-auto">
                         <img class="w-100" src="<?=Yii::$app->request->baseUrl.$Project->Image?>"/>
                         <p class="text-center"><span class="text-25-bold"><?=$Project->Title?></span></p>
-                        <p><span class="text-20-bold"><?=$Project->ST_Presentation?>: </span><span class="text-20"><?=$Project->Presentation?></span></p>
-                        <p><span class="text-20-bold"><?=$Project->ST_SourceCode?>: </span><span class="text-20"><?=$Project->SourceCode?></span></p>
+                        <p>
+                            <span class="text-20-bold"><?=$Project->ST_Presentation?>: </span>
+                            <span class="text-20">
+                                <a href="<?=Yii::$app->request->baseUrl?>/pdf/<?=$Project->Presentation?>" target="_blank"><?=$Project->Presentation?></a>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="text-20-bold"><?=$Project->ST_SourceCode?>: </span>
+                            <span class="text-20">
+                                <a href="<?=$Project->SourceCode?>"><?=$Project->SourceCode?></a>
+                            </span>
+                        </p>
                         <p>
                             <span class="text-20-bold"><?=$Project->ST_UsedTech?>: </span>
                             <?php if($Project->technologies){ $num = sizeof($Project->technologies); foreach($Project->technologies as $Technology){ ?>
@@ -69,6 +84,11 @@ $this->title = 'Basic Programming';
                     </div>
                 </div>
             <?php }} ?>
+            <div class="text-center" id="all-button2-slide">
+                <?php if($AllProjects){ $num=1; foreach($AllProjects as $Project){ ?>
+                    <span class="button2-slide m-1" id="button2-slide-<?=$num?>" onclick="currentDiv(<?=$num?>);"></span>
+                <?php $num++; }} ?>
+            </div>
         </div>
     </div>
 
