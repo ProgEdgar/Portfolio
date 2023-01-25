@@ -51,7 +51,7 @@ if($mode){
                         </button> 
                     </li>
                     <li class="nav-item col">
-                        <a class="nav-link nav-option text-25" href="#<?=str_replace(' ','_',$this->params['Name'])?>"><?=$this->params['Home']?></a>    
+                        <a class="nav-link nav-option text-25" href="#<?=str_replace(' ','_',$this->params['Start'])?>"><?=$this->params['Start']?></a>    
                     </li>
                     <li class="nav-item col">
                         <a class="nav-link nav-option text-25" href="#about"><?=$this->params['About']?></a> 

@@ -8,22 +8,15 @@ use Yii;
  * This is the model class for table "curriculum_languages".
  *
  * @property int $IdCurriculumLanguages
- * @property string $ST_MLanguage
- * @property string $MLanguage
- * @property string $ST_OralComp
+ * @property string $Name
  * @property string $OralComp
- * @property string $ST_Reading
  * @property string $Reading
- * @property string $ST_OralInteraction
  * @property string $OralInteraction
- * @property string $ST_OralProduction
  * @property string $OralProduction
- * @property string $ST_Writing
  * @property string $Writing
- * @property int $Curriculum_Id
+ * @property int $Portfolio_Id
  *
- * @property Curriculum $curriculum
- * @property ForeignLanguages[] $foreignLanguages
+ * @property Portfolio $portfolio
  */
 class CurriculumLanguages extends \yii\db\ActiveRecord
 {
@@ -41,11 +34,11 @@ class CurriculumLanguages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ST_MLanguage', 'MLanguage', 'ST_OralComp', 'OralComp', 'ST_Reading', 'Reading', 'ST_OralInteraction', 'OralInteraction', 'ST_OralProduction', 'OralProduction', 'ST_Writing', 'Writing', 'Curriculum_Id'], 'required'],
-            [['Curriculum_Id'], 'integer'],
-            [['ST_MLanguage', 'MLanguage', 'ST_OralComp', 'ST_Reading', 'ST_OralInteraction', 'ST_OralProduction', 'ST_Writing'], 'string', 'max' => 50],
+            [['Name', 'OralComp', 'Reading', 'OralInteraction', 'OralProduction', 'Writing', 'Portfolio_Id'], 'required'],
+            [['Portfolio_Id'], 'integer'],
+            [['Name'], 'string', 'max' => 100],
             [['OralComp', 'Reading', 'OralInteraction', 'OralProduction', 'Writing'], 'string', 'max' => 2],
-            [['Curriculum_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Curriculum::class, 'targetAttribute' => ['Curriculum_Id' => 'IdCurriculum']],
+            [['Portfolio_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Portfolio::class, 'targetAttribute' => ['Portfolio_Id' => 'IdPortfolio']],
         ];
     }
 
@@ -56,39 +49,23 @@ class CurriculumLanguages extends \yii\db\ActiveRecord
     {
         return [
             'IdCurriculumLanguages' => 'Id Curriculum Languages',
-            'ST_MLanguage' => 'St M Language',
-            'MLanguage' => 'M Language',
-            'ST_OralComp' => 'St Oral Comp',
+            'Name' => 'Name',
             'OralComp' => 'Oral Comp',
-            'ST_Reading' => 'St Reading',
             'Reading' => 'Reading',
-            'ST_OralInteraction' => 'St Oral Interaction',
             'OralInteraction' => 'Oral Interaction',
-            'ST_OralProduction' => 'St Oral Production',
             'OralProduction' => 'Oral Production',
-            'ST_Writing' => 'St Writing',
             'Writing' => 'Writing',
-            'Curriculum_Id' => 'Curriculum ID',
+            'Portfolio_Id' => 'Portfolio ID',
         ];
     }
 
     /**
-     * Gets query for [[Curriculum]].
+     * Gets query for [[Portfolio]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCurriculum()
+    public function getPortfolio()
     {
-        return $this->hasOne(Curriculum::class, ['IdCurriculum' => 'Curriculum_Id']);
-    }
-
-    /**
-     * Gets query for [[ForeignLanguages]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getForeignLanguages()
-    {
-        return $this->hasMany(ForeignLanguages::class, ['CurriculumLanguages_Id' => 'IdCurriculumLanguages']);
+        return $this->hasOne(Portfolio::class, ['IdPortfolio' => 'Portfolio_Id']);
     }
 }

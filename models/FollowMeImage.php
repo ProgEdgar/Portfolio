@@ -10,9 +10,9 @@ use Yii;
  * @property int $IdFollowMeImage
  * @property string $Image
  * @property string $Link
- * @property int $FollowMe_Id
+ * @property int $Portfolio_Id
  *
- * @property FollowMe $followMe
+ * @property Portfolio $portfolio
  */
 class FollowMeImage extends \yii\db\ActiveRecord
 {
@@ -30,11 +30,11 @@ class FollowMeImage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Image', 'Link', 'FollowMe_Id'], 'required'],
-            [['FollowMe_Id'], 'integer'],
+            [['Image', 'Link', 'Portfolio_Id'], 'required'],
+            [['Portfolio_Id'], 'integer'],
             [['Image'], 'string', 'max' => 50],
             [['Link'], 'string', 'max' => 100],
-            [['FollowMe_Id'], 'exist', 'skipOnError' => true, 'targetClass' => FollowMe::class, 'targetAttribute' => ['FollowMe_Id' => 'IdFollowMe']],
+            [['Portfolio_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Portfolio::class, 'targetAttribute' => ['Portfolio_Id' => 'IdPortfolio']],
         ];
     }
 
@@ -47,17 +47,17 @@ class FollowMeImage extends \yii\db\ActiveRecord
             'IdFollowMeImage' => 'Id Follow Me Image',
             'Image' => 'Image',
             'Link' => 'Link',
-            'FollowMe_Id' => 'Follow Me ID',
+            'Portfolio_Id' => 'Portfolio ID',
         ];
     }
 
     /**
-     * Gets query for [[FollowMe]].
+     * Gets query for [[Portfolio]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFollowMe()
+    public function getPortfolio()
     {
-        return $this->hasOne(FollowMe::class, ['IdFollowMe' => 'FollowMe_Id']);
+        return $this->hasOne(Portfolio::class, ['IdPortfolio' => 'Portfolio_Id']);
     }
 }

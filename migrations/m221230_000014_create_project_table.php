@@ -19,19 +19,15 @@ class m221230_000014_create_project_table extends Migration
 
         $this->createTable('{{project}}', [
             'IdProject' => $this->primaryKey(),
-            'Title' => $this->string(50)->notNull(),
-            'ST_Presentation' => $this->string(20)->notNull(),
-            'Presentation' => $this->string(50),
-            'ST_UsedTech' => $this->string(20)->notNull(),
-            'ST_SourceCode' => $this->string(20)->notNull(),
+            'Title' => $this->string(100)->notNull(),
+            'Presentation' => $this->string(100),
             'SourceCode' => $this->string(100),
-            'ST_Description' => $this->string(20)->notNull(),
             'Description' => $this->text()->notNull(),
-            'Image' => $this->string(50)->notNull(),
-            'Projects_Id' => $this->integer()->notNull(),
+            'Image' => $this->string(100)->notNull(),
+            'Portfolio_Id' => $this->integer()->notNull(),
         ], $tableOptions);
         
-        $this->addForeignKey('fk_project_projects','project','Projects_Id','projects','IdProjects');
+        $this->addForeignKey('fk_project_porfolio','project','Portfolio_Id','portfolio','IdPortfolio');
     }
 
     /**

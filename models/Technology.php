@@ -8,14 +8,14 @@ use Yii;
  * This is the model class for table "technology".
  *
  * @property int $IdTechnology
- * @property string $Title
- * @property int $Technologies_Id
+ * @property string $Name
+ * @property int $Portfolio_Id
  *
  * @property CurriculumEducation[] $curriculumEducations
  * @property EducationTechnologies[] $educationTechnologies
+ * @property Portfolio $portfolio
  * @property ProjectTechnologies[] $projectTechnologies
  * @property Project[] $projects
- * @property Technologies $technologies
  */
 class Technology extends \yii\db\ActiveRecord
 {
@@ -33,10 +33,10 @@ class Technology extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Title', 'Technologies_Id'], 'required'],
-            [['Technologies_Id'], 'integer'],
-            [['Title'], 'string', 'max' => 50],
-            [['Technologies_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Technologies::class, 'targetAttribute' => ['Technologies_Id' => 'IdTechnologies']],
+            [['Name', 'Portfolio_Id'], 'required'],
+            [['Portfolio_Id'], 'integer'],
+            [['Name'], 'string', 'max' => 100],
+            [['Portfolio_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Portfolio::class, 'targetAttribute' => ['Portfolio_Id' => 'IdPortfolio']],
         ];
     }
 
@@ -47,8 +47,8 @@ class Technology extends \yii\db\ActiveRecord
     {
         return [
             'IdTechnology' => 'Id Technology',
-            'Title' => 'Title',
-            'Technologies_Id' => 'Technologies ID',
+            'Name' => 'Name',
+            'Portfolio_Id' => 'Portfolio ID',
         ];
     }
 
@@ -73,6 +73,16 @@ class Technology extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Portfolio]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPortfolio()
+    {
+        return $this->hasOne(Portfolio::class, ['IdPortfolio' => 'Portfolio_Id']);
+    }
+
+    /**
      * Gets query for [[ProjectTechnologies]].
      *
      * @return \yii\db\ActiveQuery
@@ -90,15 +100,5 @@ class Technology extends \yii\db\ActiveRecord
     public function getProjects()
     {
         return $this->hasMany(Project::class, ['IdProject' => 'Project_Id'])->viaTable('project_technologies', ['Technology_Id' => 'IdTechnology']);
-    }
-
-    /**
-     * Gets query for [[Technologies]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTechnologies()
-    {
-        return $this->hasOne(Technologies::class, ['IdTechnologies' => 'Technologies_Id']);
     }
 }

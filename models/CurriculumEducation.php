@@ -8,21 +8,13 @@ use Yii;
  * This is the model class for table "curriculum_education".
  *
  * @property int $IdCurriculumEducation
- * @property string $ST_Course
  * @property string $Course
- * @property string $ST_University
  * @property string $University
- * @property string $ST_AcquiredTech
- * @property string $ST_Programming
- * @property string $ST_OperatingSystem
- * @property string $ST_Frameworks
- * @property string $ST_Tools
- * @property string $ST_FinalGrade
  * @property int $FinalGrade
- * @property int $Curriculum_Id
+ * @property int $Portfolio_Id
  *
- * @property Curriculum $curriculum
  * @property EducationTechnologies[] $educationTechnologies
+ * @property Portfolio $portfolio
  * @property Technology[] $technologies
  */
 class CurriculumEducation extends \yii\db\ActiveRecord
@@ -41,12 +33,11 @@ class CurriculumEducation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ST_Course', 'Course', 'ST_University', 'University', 'ST_AcquiredTech', 'ST_Programming', 'ST_OperatingSystem', 'ST_Frameworks', 'ST_Tools', 'ST_FinalGrade', 'FinalGrade', 'Curriculum_Id'], 'required'],
-            [['FinalGrade', 'Curriculum_Id'], 'integer'],
-            [['ST_Course', 'ST_University', 'ST_AcquiredTech', 'ST_Programming', 'ST_OperatingSystem', 'ST_Frameworks', 'ST_Tools', 'ST_FinalGrade'], 'string', 'max' => 50],
+            [['Course', 'University', 'FinalGrade', 'Portfolio_Id'], 'required'],
+            [['FinalGrade', 'Portfolio_Id'], 'integer'],
             [['Course'], 'string', 'max' => 100],
             [['University'], 'string', 'max' => 200],
-            [['Curriculum_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Curriculum::class, 'targetAttribute' => ['Curriculum_Id' => 'IdCurriculum']],
+            [['Portfolio_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Portfolio::class, 'targetAttribute' => ['Portfolio_Id' => 'IdPortfolio']],
         ];
     }
 
@@ -57,29 +48,11 @@ class CurriculumEducation extends \yii\db\ActiveRecord
     {
         return [
             'IdCurriculumEducation' => 'Id Curriculum Education',
-            'ST_Course' => 'St Course',
             'Course' => 'Course',
-            'ST_University' => 'St University',
             'University' => 'University',
-            'ST_AcquiredTech' => 'St Acquired Tech',
-            'ST_Programming' => 'St Programming',
-            'ST_OperatingSystem' => 'St Operating System',
-            'ST_Frameworks' => 'St Frameworks',
-            'ST_Tools' => 'St Tools',
-            'ST_FinalGrade' => 'St Final Grade',
             'FinalGrade' => 'Final Grade',
-            'Curriculum_Id' => 'Curriculum ID',
+            'Portfolio_Id' => 'Portfolio ID',
         ];
-    }
-
-    /**
-     * Gets query for [[Curriculum]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCurriculum()
-    {
-        return $this->hasOne(Curriculum::class, ['IdCurriculum' => 'Curriculum_Id']);
     }
 
     /**
@@ -90,6 +63,16 @@ class CurriculumEducation extends \yii\db\ActiveRecord
     public function getEducationTechnologies()
     {
         return $this->hasMany(EducationTechnologies::class, ['CurriculumEducation_Id' => 'IdCurriculumEducation']);
+    }
+
+    /**
+     * Gets query for [[Portfolio]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPortfolio()
+    {
+        return $this->hasOne(Portfolio::class, ['IdPortfolio' => 'Portfolio_Id']);
     }
 
     /**

@@ -19,11 +19,11 @@ class m221230_000015_create_technology_table extends Migration
 
         $this->createTable('{{technology}}', [
             'IdTechnology' => $this->primaryKey(),
-            'Title' => $this->string(50)->notNull(),
-            'Technologies_Id' => $this->integer()->notNull(),
+            'Name' => $this->string(100)->notNull(),
+            'Portfolio_Id' => $this->integer()->notNull(),
         ], $tableOptions);
         
-        $this->addForeignKey('fk_technology_technologies','technology','Technologies_Id','technologies','IdTechnologies');
+        $this->addForeignKey('fk_technology_portfolio','technology','Portfolio_Id','portfolio','IdPortfolio');
     }
 
     /**

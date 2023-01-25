@@ -2,28 +2,13 @@
 
 namespace app\controllers;
 
-use Yii;
-use app\models\About;
-use yii\web\Response;
-use app\models\Header;
-use app\models\Contact;
-use app\models\Project;
-use yii\web\Controller;
-use app\models\FollowMe;
-use app\models\Language;
-use app\models\Projects;
-use app\models\Dashboard;
+use app\models\Portfolio;
 use app\models\LoginForm;
-use app\models\Curriculum;
-use app\models\Technology;
+use Yii;
+use yii\web\Response;
+use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\Technologies;
-use app\models\CurriculumJob;
-use app\models\FollowMeImage;
 use yii\filters\AccessControl;
-use app\models\ForeignLanguages;
-use app\models\CurriculumEducation;
-use app\models\CurriculumLanguages;
 
 class SiteController extends Controller
 {
@@ -89,116 +74,55 @@ class SiteController extends Controller
     }
 
     private function thisIndex($Code){
-        $Language = Language::find()->where('Code like "%'.$Code.'%"')->one();
+        $Portfolio = Portfolio::find()->where('LanguageCode like "%'.$Code.'%"')->one();
         
-        $AllLanguages = null;
+        $AllPortfolios = null;
 
-        if(!$Language){
-            $Language = Language::find()->where('Code like "%en_us%"')->one();
+        if(!$Portfolio){
+            $Portfolio = Portfolio::find()->where('LanguageCode like "%en_us%"')->one();
         }
-        if(!$Language){
-            $Language = Language::find()->where('Code like "%??_??%"')->one();
+        if(!$Portfolio){
+            $Portfolio = Portfolio::find()->where('LanguageCode like "%??_??%"')->one();
         }else{
-            $AllLanguages = Language::find()->where('Code not like "%??_??%"')->orderBy("Name")->all();
+            $AllPortfolios = Portfolio::find()->where('LanguageCode not like "%??_??%"')->orderBy("Language")->all();
         }
-        
-        $Dashboard = null;
-        $About = null;
-        $Header = null;
-        $Contact = null;
-        $Projects = null;
-        $FollowMe = null;
-        $Technologies = null;
-        $Curriculum = null;
-        $AllProjects = null;
-        $AllTechnologies = null;
-        $AllJobs = null;
-        $AllEducation = null;
-        $CurriculumLanguage = null;
-        $ForeignLanguages = null;
-        $FollowImages = null;
-
-        if($Language){
-            $Dashboard = Dashboard::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Language){
-            $About = About::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Language){
-            $FollowMe = FollowMe::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Language){
-            $Header = Header::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Language){
-            $Contact = Contact::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Language){
-            $Projects = Projects::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Language){
-            $Technologies = Technologies::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Language){
-            $Curriculum = Curriculum::find()->where('Language_Id = '.$Language->IdLanguage)->one();
-        }
-        if($Projects){
-            $AllProjects = $Projects->projects;
-        }
-        if($FollowMe){
-            $FollowImages = $FollowMe->followMeImages;
-        }
-        if($Technologies){
-            $AllTechnologies = $Technologies->technologies;
-        }
-        if($Curriculum){
-            $AllJobs = $Curriculum->curriculumJobs;
-        }
-        if($Curriculum){
-            $AllEducation = $Curriculum->curriculumEducations;
-        }
-        if($Curriculum){
-            $CurriculumLanguage = CurriculumLanguages::find()->where('Curriculum_Id = '.$Curriculum->IdCurriculum)->one();
-        }
-        if($CurriculumLanguage){
-            $ForeignLanguages = $CurriculumLanguage->foreignLanguages;
-        }
-        if($AllLanguages){
+    
+        if($AllPortfolios){
             $num = 0;
-            foreach($AllLanguages as $Lang){
-                $this->view->params['Language'][$num]['Code'] = $Lang->Code;
-                $this->view->params['Language'][$num]['Name'] = $Lang->Name;
+            foreach($AllPortfolios as $Port){
+                $this->view->params['Language'][$num]['Code'] = $Port->LanguageCode;
+                $this->view->params['Language'][$num]['Name'] = $Port->Language;
                 $num++;
             }
         }else{
             $this->view->params['Language'] = null;
         }
-        $this->view->params['SelectedLang'] = $Language->Code;
-        $this->view->params['Home'] = $Header->Home;
-        $this->view->params['About'] = $Header->About;
-        $this->view->params['Technologies'] = $Header->Technologies;
-        $this->view->params['Name'] = $Header->Name;
-        $this->view->params['Projects'] = $Header->Projects;
-        $this->view->params['Curriculum'] = $Header->Curriculum;
-        $this->view->params['Contact'] = $Header->Contact;
+
+        $Projects = $Portfolio->projects;
+        $Technologies = $Portfolio->technologies;
+        $CurriculumJobs = $Portfolio->curriculumJobs;
+        $CurriculumEducations = $Portfolio->curriculumEducations;
+        $CurriculumLanguages = $Portfolio->curriculumLanguages;
+        $FollowImages = $Portfolio->followMeImages;
+        $this->view->params['SelectedLang'] = $Portfolio->LanguageCode;
+        $this->view->params['Start'] = $Portfolio->HeaderStart;
+        $this->view->params['About'] = $Portfolio->STAbout;
+        $this->view->params['Technologies'] = $Portfolio->STTechnologies;
+        $this->view->params['Name'] = $Portfolio->HeaderName;
+        $this->view->params['Projects'] = $Portfolio->STProjects;
+        $this->view->params['Curriculum'] = $Portfolio->STCurriculum;
+        $this->view->params['Contact'] = $Portfolio->STContact;
         
 
         return $this->render('index', [
-            'Dashboard' => $Dashboard,
-            'FollowMe' => $FollowMe,
-            'FollowImages' => $FollowImages,
-            'About' => $About,
-            'Header' => $Header,
-            'Contact' => $Contact,
+            'Portfolio' => $Portfolio,
             'Projects' => $Projects,
             'Technologies' => $Technologies,
-            'Curriculum' => $Curriculum,
-            'AllProjects' => $AllProjects,
-            'AllTechnologies' => $AllTechnologies,
-            'AllJobs' => $AllJobs,
-            'AllEducation' => $AllEducation,
-            'CurriculumLanguage' => $CurriculumLanguage,
-            'ForeignLanguages' => $ForeignLanguages,
+            'CurriculumJobs' => $CurriculumJobs,
+            'CurriculumEducations' => $CurriculumEducations,
+            'CurriculumLanguages' => $CurriculumLanguages,
+            'FollowImages' => $FollowImages,
+            'Technologies' => $Technologies,
         ]);    
     }
 
@@ -209,61 +133,7 @@ class SiteController extends Controller
      */
     public function actionCreate(/*$Code*/)
     {
-        /*$language = Language::Find()->where(['Code' => strtolower($Code)])->one();
-        if($language == null){
-            $language = Language::Find()->where(['IdLanguage' => 1])->one();
-            $aboutModel = new About();
-            $technologiesModel = new Technologies();
-            $technologyModel = new Technology();
-            $projectsModel = new Projects();
-            $projectModel = new Project();
-            $curriculumModel = new Curriculum();
-            $curriculumJobModel = new CurriculumJob();
-            $curriculumEducationModel = new CurriculumEducation();
-            $curriculumLanguages = new CurriculumLanguages();
-            $foreignLanguages = new ForeignLanguages();
-            $contactModel = new Contact();
-            $followMeModel = new FollowMe();
-            $followMeImageModel = new FollowMeImage();
-        }*/
-/*
-
-
-
-
-        $dashModel = new Dashboard();
-        $aboutModel = new About();
-        $technologiesModel = new Technologies();
-        $projectsModel = new Projects();
-        $curriculumModel = new Curriculum();
-        $contactModel = new Contact();
-        $followMeModel = new FollowMe();
-
-
-        $AllTechnologies = Technology::find()->all();
-
-        
-        $technologyModel = new Technology();
-        $projectModel = new Project();
-        $curriculumJobModel = new CurriculumJob();
-        $curriculumEducationModel = new CurriculumEducation();
-        $curriculumLanguages = new CurriculumLanguages();
-        $foreignLanguages = new ForeignLanguages();
-        $followMeImageModel = new FollowMeImage();
-
-
-        
-        return $this->render('index', [
-            'dashModel'=>$dashModel,
-            'aboutModel'=>$aboutModel,
-            'technologiesModel'=>$technologiesModel,
-            'projectsModel'=>$projectsModel,
-            'curriculumModel'=>$curriculumModel,
-            'contactModel'=>$contactModel,
-            'followMeModel'=>$followMeModel,
-
-            'AllTechnologies'=>$AllTechnologies,
-        ]);*/
+        // For the future (so that i don't have to use migrations to add my own data)
     }
 
     /**

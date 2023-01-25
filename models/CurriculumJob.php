@@ -8,19 +8,14 @@ use Yii;
  * This is the model class for table "curriculum_job".
  *
  * @property int $IdCurriculumJob
- * @property string $ST_Job
  * @property string $Job
- * @property string $ST_Since
  * @property string|null $Since
- * @property string $ST_Local
  * @property string $Local
- * @property string $ST_Company
  * @property string $Company
- * @property string $ST_Type
  * @property string $Work
- * @property int $Curriculum_Id
+ * @property int $Portfolio_Id
  *
- * @property Curriculum $curriculum
+ * @property Portfolio $portfolio
  */
 class CurriculumJob extends \yii\db\ActiveRecord
 {
@@ -38,14 +33,12 @@ class CurriculumJob extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ST_Job', 'Job', 'ST_Since', 'ST_Local', 'Local', 'ST_Company', 'Company', 'ST_Type', 'Work', 'Curriculum_Id'], 'required'],
+            [['Job', 'Local', 'Company', 'Work', 'Portfolio_Id'], 'required'],
             [['Since'], 'safe'],
             [['Work'], 'string'],
-            [['Curriculum_Id'], 'integer'],
-            [['ST_Job', 'ST_Since', 'ST_Local', 'ST_Company'], 'string', 'max' => 20],
-            [['Job'], 'string', 'max' => 100],
-            [['Local', 'Company', 'ST_Type'], 'string', 'max' => 50],
-            [['Curriculum_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Curriculum::class, 'targetAttribute' => ['Curriculum_Id' => 'IdCurriculum']],
+            [['Portfolio_Id'], 'integer'],
+            [['Job', 'Local', 'Company'], 'string', 'max' => 100],
+            [['Portfolio_Id'], 'exist', 'skipOnError' => true, 'targetClass' => Portfolio::class, 'targetAttribute' => ['Portfolio_Id' => 'IdPortfolio']],
         ];
     }
 
@@ -56,27 +49,22 @@ class CurriculumJob extends \yii\db\ActiveRecord
     {
         return [
             'IdCurriculumJob' => 'Id Curriculum Job',
-            'ST_Job' => 'St Job',
             'Job' => 'Job',
-            'ST_Since' => 'St Since',
             'Since' => 'Since',
-            'ST_Local' => 'St Local',
             'Local' => 'Local',
-            'ST_Company' => 'St Company',
             'Company' => 'Company',
-            'ST_Type' => 'St Type',
             'Work' => 'Work',
-            'Curriculum_Id' => 'Curriculum ID',
+            'Portfolio_Id' => 'Portfolio ID',
         ];
     }
 
     /**
-     * Gets query for [[Curriculum]].
+     * Gets query for [[Portfolio]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCurriculum()
+    public function getPortfolio()
     {
-        return $this->hasOne(Curriculum::class, ['IdCurriculum' => 'Curriculum_Id']);
+        return $this->hasOne(Portfolio::class, ['IdPortfolio' => 'Portfolio_Id']);
     }
 }
