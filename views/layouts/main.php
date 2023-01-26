@@ -36,7 +36,7 @@ if($mode){
 <html lang="<?= Yii::$app->language ?>" class="h-100">
     <head>
         <title><?=$this->params['Name']?></title>
-        <link id="link-mode" rel="stylesheet" type="text/css" href="<?=Yii::$app->request->baseUrl.'/'.'css/'.($mode?'dark-mode.css':'light-mode.css')?>" />
+        <link id="link-mode" rel="stylesheet" type="text/css" href="<?=Yii::$app->request->baseUrl.'/'.'css/'.'dark-mode.css'/*($mode?'dark-mode.css':'light-mode.css')*/?>" />
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.js"></script>
         <?php $this->head() ?>
     </head>
@@ -46,8 +46,8 @@ if($mode){
             <div class="container justify-center">
                 <ul class="navbar-nav row">
                     <li class="nav-item col-auto">
-                        <button class="nav-link buttons" id="button-mode" onclick="changeThemeMode(<?=$btnMode?>);">
-                            <img id="image-mode" width="40px" height="40px" src="<?=Yii::$app->request->baseUrl.'/'.'img/'.($mode?'light-mode.png':'dark-mode')?>" alt="Light Mode"/>
+                        <button class="nav-link buttons" id="button-mode" onclick="changeThemeMode(<?=/*$btnMode*/'0'?>);">
+                            <img id="image-mode" width="40px" height="40px" src="<?=Yii::$app->request->baseUrl.'/'.'img/'.'light-mode.png'/*($mode?'light-mode.png':'dark-mode.png')*/?>" alt="Light Mode"/>
                         </button> 
                     </li>
                     <li class="nav-item col">
